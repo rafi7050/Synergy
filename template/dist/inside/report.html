@@ -1,0 +1,150 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Report {% endblock %}
+{% block contenu %} 
+    <main>
+        <section class="bg-dark pt-11 pt-lg-12 text-white bg-layer-white-bottom-50-left-100">
+            <div>
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div></div>
+        </section>
+        <section class=bg-light>
+            <div class="container pt-6 pb-7 pt-lg-7 pb-lg-10">
+                <div class=row>
+                    <h2>Report - <a href="{% url 'report:report_open' %}">Access the data</a></h2>
+                    <hr>
+                    <div class=row>
+                        {% if seed_count_total == 0 %}
+                            <h3>No seeds to report </h3>
+                        {% else %}
+                            <h3>Seeds - {{ seed_count_total }} created in total </h3>
+                            {% autoescape off %}
+                            {{ plot_seed }}
+                            {% endautoescape %}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <hr>
+                    <div class=row>
+                        {% if vision_count_total == 0 %}
+                            <h3>No vision to report </h3>
+                        {% else %}
+                            <h3>Vision - {{ vision_count_total }} created in total</h3>
+                            {% autoescape off %}
+                            {{ plot_vision }}
+                            {% endautoescape %}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row">
+                        {% if comment_count_total == 0 %}
+                            <h3>No comments to report </h3>
+                        {% else %}
+                            <h3>Comments - {{ comment_count_total }} created in total</h3>
+                            {% autoescape off %}
+                            {{ plot_comments }}
+                            {% endautoescape %}
+                        {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <h3>Following interests</h3>
+                    <p>You are currently following {{ following }} user </p>
+                    <div class=row>
+                        <h4>Their SDGs</h4>
+                        {% autoescape off %}
+                        {{ plot_sdg_following }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Their VC</h4>
+                        {% autoescape off %}
+                        {{ plot_vc_following }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Their industry</h4>
+                        {% autoescape off %}
+                        {{ plot_ind_following }}
+                        {% endautoescape %}
+                     </div>
+                    <hr>
+                    <h3>Follower interests</h3>
+                    <p>{{ follower }} users are following you</p>
+                    <div class=row>
+                        <h4>Their SDGs</h4>
+                        {% autoescape off %}
+                        {{ plot_sdg_follower }}
+                        {% endautoescape %}
+                    </div>
+                    <div class=row>
+                        <h4>Their VC</h4>
+                        {% autoescape off %}
+                        {{ plot_vc_follower }}
+                        {% endautoescape %}
+                    </div>
+                    <div class=row>
+                        <h4>Their industry</h4>
+                        {% autoescape off %}
+                        {{ plot_ind_follower }}
+                        {% endautoescape %}
+                    </div>
+                    <hr>
+                    <h3> Your favourites seed </h3>
+                    <p>You are currently have {{ fav_seed }} favourites seeds </p>
+                    <div class=row>
+                        <h4>Related SDGs</h4>
+                        {% autoescape off %}
+                        {{ plot_sdg_favour }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Related VC</h4>
+                        {% autoescape off %}
+                        {{ plot_vc_favour }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Related Industries</h4>
+                        {% autoescape off %}
+                        {{ plot_ind_favour }}
+                        {% endautoescape %}
+                    </div>
+                    <hr>
+                    <h3> Your liked seed </h3>
+                    <p>You are currently have {{ like_seed }} liked seeds </p>
+                    <div class=row>
+                        <h4>Related SDGs</h4>
+                        {% autoescape off %}
+                        {{ plot_sdg_likes }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Related VC</h4>
+                        {% autoescape off %}
+                        {{ plot_vc_likes }}
+                        {% endautoescape %}
+                        </div>
+                    <div class=row>
+                        <h4>Related Industries</h4>
+                        {% autoescape off %}
+                        {{ plot_ind_likes }}
+                        {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+  
+
+{% endblock %}

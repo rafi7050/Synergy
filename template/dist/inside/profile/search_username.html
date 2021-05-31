@@ -1,0 +1,96 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Return Profile {% endblock %}
+{% block contenu %} 
+
+<main>
+    <section class="bg-light pb-6 pb-md-0">
+        <div class=container>
+            <div class="col-lg-4 py-9 py-lg-10 z-index-1">
+                <h2> Look for an username</h2>
+                <form action="" method="GET">
+                    {% csrf_token %}
+                    {{ form_username.username }}
+                    <input type="Submit" class="btn btn-outline-dark" name="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row px-4">
+            {% if found == "okay"  %}
+                {% for view_user_profile in pview %}
+                    <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                        <div class="card shadow lift rounded"> 
+                            <picture>
+                                {% if view_user_profile.profile_picture == "Null" %}
+                                    <source srcset="/media/sdgs/SDG_1.jpg" type=image/jpg><img src="/media/sdgs/SDG_1.jpg" alt="Picture" class="img-fluid w-100 card-img-top rounded-top">
+                                {% else %}
+                                    <source srcset="/media/{{view_user_profile.profile_picture}}" type=image/jpg><img src="/media/{{view_user_profile.profile_picture}}" alt="damn" class="img-fluid w-100 card-img-top rounded-top">
+                                {% endif %}
+                            </picture>      
+                            <div class="card-body py-4">
+                                {% for user in uview %}
+                                    {% if user.id == view_user_profile.user_id %}
+                                        <h1>{{ user.username }}</h1>
+                                        <p>{{ view_user_profile.description }}</p>
+                                        <a class="btn btn btn-outline-dark" href="{% url 'accounts:user_profile' username=user.username %}">View Profile</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% elif found == "no" %}
+                <h2>No username found with this query</h2>
+                <br>
+                {% for view_user_profile in pview %}
+                    <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                        <div class="card shadow lift rounded"> 
+                            <picture>
+                                {% if view_user_profile.profile_picture == "Null" %}
+                                    <source srcset="/media/sdgs/SDG_1.jpg" type=image/jpg><img src="/media/sdgs/SDG_1.jpg" alt="Picture" class="img-fluid w-100 card-img-top rounded-top">
+                                {% else %}
+                                    <source srcset="/media/{{view_user_profile.profile_picture}}" type=image/jpg><img src="/media/{{view_user_profile.profile_picture}}" alt="damn" class="img-fluid w-100 card-img-top rounded-top">
+                                {% endif %}
+                            </picture>      
+                            <div class="card-body py-4">
+                                {% for user in uview %}
+                                    {% if user.id == view_user_profile.user_id %}
+                                        <h1>{{ user.username }}</h1>
+                                        <p>{{ view_user_profile.description }}</p>
+                                        <a class="btn btn btn-outline-dark" href="{% url 'accounts:user_profile' username=user.username %}">View Profile</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for view_user_profile in pview %}
+                    <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                        <div class="card shadow lift rounded"> 
+                            <picture>
+                                {% if view_user_profile.profile_picture == "Null" %}
+                                    <source srcset="/media/sdgs/SDG_1.jpg" type=image/jpg><img src="/media/sdgs/SDG_1.jpg" alt="Picture" class="img-fluid w-100 card-img-top rounded-top">
+                                {% else %}
+                                    <source srcset="/media/{{view_user_profile.profile_picture}}" type=image/jpg><img src="/media/{{view_user_profile.profile_picture}}" alt="damn" class="img-fluid w-100 card-img-top rounded-top">
+                                {% endif %}
+                            </picture>      
+                            <div class="card-body py-4">
+                                {% for user in uview %}
+                                    {% if user.id == view_user_profile.user_id %}
+                                        <h1>{{ user.username }}</h1>
+                                        <p>{{ view_user_profile.description }}</p>
+                                        <a class="btn btn btn-outline-dark" href="{% url 'accounts:user_profile' username=user.username %}">View Profile</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

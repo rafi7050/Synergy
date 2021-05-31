@@ -1,0 +1,85 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Create a Seed {% endblock %}
+    
+    
+    
+{% block contenu %} 
+<main>
+    <section class="bg-dark" id=content>
+        <div class="bcontainer-fluid px-15">
+            <div class="row no-gutters align-items-center justify-content-center">
+                <div class="bg-light col-lg px-5 px-lg-6 px-xl-10 pt-11 pb-6 py-lg-6 mt-7">
+                    <h1 class=display-4>Create a Seed</h1>
+                    {% if seed_form.errors %}
+                        {% for field in seed_form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <p>{{ field.name }}</p>
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in seed_form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}           
+                    <div class="row mx-n2">
+                        <form action="{% url 'knowledge:seed_create' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h5>Title - {{ seed_form.title }}</h5>
+                            <hr>
+                            <span><h6>Briefly summarize your seed<br><br>{{ seed_form.summary }}</h6></span>
+                            <span><h6>What is the aim of your seed?<br><br>{{ seed_form.aim_seed }}</h6></span>
+                            <span><h6>Provide maximum 4 keywords related to your seed. 
+                                Please, seperate each keyword using a coma.<br><br>{{ seed_form.keywords }}</h6></span>
+                            <hr>
+                            <span><h6>Choose the relevent sdg:<a class="text-success" data-bs-toggle="collapse" href="#collapsesdg" role="button" aria-expanded="false" aria-controls="collapsesdg"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                              </svg></a>
+                                <div class="collapse" id="collapsesdg">
+                                    <br>{{ seed_form.sdg }}
+                                <div>
+                            </h6></span>
+                            <span><h6>Choose the relevent industry:<a class="text-success" data-bs-toggle="collapse" href="#collapsesin" role="button" aria-expanded="false" aria-controls="collapsesin"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                              </svg></a>
+                                <div class="collapse" id="collapsesin">
+                                    <br>{{ seed_form.industry }}
+                                <div>
+                            </h6></span>
+                            <span><h6>Choose the relevent value chain:<a class="text-success" data-bs-toggle="collapse" href="#collapsevc" role="button" aria-expanded="false" aria-controls="collapsevc"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                              </svg></a>
+                                <div class="collapse" id="collapsevc">
+                                    {{ seed_vc.value_chain }}
+                                </div>
+                            </h6></span>
+                            <hr>
+                            <span><h5>Explain the pros of your solutions<br><br>{{ seed_form.pros }}</h5></span>
+                            <span><h5>Explain the cons of your solutions<br><br>{{ seed_form.cons }}</h5></span>
+                            <span><h5>Describe your solutions<br><br>{{ seed_form.contenu }}</h5></span>
+                            <span><h5>Present examples of your solutions<br><br>{{ seed_form.use_case }}</h5></span>
+                            <hr>
+                            <h4>Would you like to add a picture ? </h4>
+                            {{ seed_form.profile_seed }}
+                            <br>
+                            <h4>Would you like to add a document? </h4>
+                            {{ docu_form.as_p }}
+                            <br>
+                            
+                            <button type="submit" class="btn btn-dark">Done</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

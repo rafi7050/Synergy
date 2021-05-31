@@ -1,0 +1,50 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} View Likes {% endblock %}
+    
+{% block contenu %} 
+    <main>
+        <section class="bg-light pb-6 pb-md-0">
+            <div class=container>
+                <div class="col-lg-10 py-9 py-lg-10 z-index-1">
+                    <h2>All the seed disliked by {{user_profile.username}}</h2>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="row px-4">
+                {% if not seed %}
+                    <h4>{{user_profile.username}} has no yet disliked a seed</h4>
+                {% else %}
+                    {% for view_seed in seed %}
+                        <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                            <div class="card shadow lift rounded">
+                                <picture>
+                                    {% if view_seed.profile_seed == "Null" %}
+                                        <source srcset=/static/assets/images/photos/platform/Dashboard-Seed.jpg type=image/jpg><img src=/static/assets/images/photos/platform/Dashboard-Seed.jpg alt=profile-01 class="img-fluid w-100 card-img-top rounded-top">
+                                    {% else %}
+                                        <source srcset=/media/{{view_seed.profile_seed}} type=image/jpg><img src=/media/{{view_seed.profile_seed}} alt=profile-01 class="img-fluid w-100 card-img-top rounded-top">
+                                    {% endif %}
+                                </picture>    
+                                <div class="card-body py-4">
+                                    <h1>{{ view_seed.title }}</h1>
+                                    <hr>
+                                    <p>Summary - {{ view_seed.summary }}</p>
+                                    {% for keyword in view_seed.keywords.all %}
+                                        <i class="mr-1 badge badge-success">{{ keyword }}</i>
+                                    {% endfor %}
+                                    <hr>
+                                    <h6><i>{{ view_seed.date_publication }}</i></h6>
+                                    <a class="btn btn btn-outline-dark" href="{% url 'knowledge:one_seed' slug=view_seed.slug %}">View Seed</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div> 
+                {% endif %} 
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

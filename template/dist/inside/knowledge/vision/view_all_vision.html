@@ -1,0 +1,42 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} View Seeds {% endblock %}
+    
+    
+    
+{% block contenu %} 
+<main>
+    <section class="bg-dark pb-6 pb-md-0" id=content>
+        <div class=container>
+            <div class="row no-gutters align-items-center">
+                <div class=col-md-8 data-aos=fade-right>
+                    <div class="img-shifted shift-left vh-75 py-12 py-lg-15">
+                        <!--image on the left-->
+                        <div class="bg-image bg-cover overlay overlay-primary-gradient-top-50 overlay-50 d-none d-md-block" style="background-image: url(/static/assets/images/photos/platform/TreeFog.jpg);" data-jarallax data-speed=.8></div>
+                    </div>
+                    <div class="position-absolute top-50 mt-5 mt-md-0 mt-xl-n7 left-0 pr-md-9 pr-lg-12 text-white">
+                        <h1>All Vision</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row px-4">
+            {% for vision in vision %}
+                <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                        <div class="card shadow lift rounded"> 
+                            <div class="card-body py-4">
+                                <h3 class="card-title">{{ vision.content }}</h3>
+                                <p>{{ vision.user }}</p>
+                                <p>{{ vision.keywords }}</p>
+                                <span>{{ seed.date_publication }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </section>
+</main>
+
+{% endblock %}

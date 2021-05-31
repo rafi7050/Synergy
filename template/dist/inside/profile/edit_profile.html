@@ -1,0 +1,101 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Edit Profile {% endblock %}
+    
+    
+    
+{% block contenu %} 
+<main>
+    <section class="bg-dark" id=content>
+        <div class="bcontainer-fluid px-15">
+            <div class="row no-gutters align-items-center justify-content-center">
+                <div class="bg-light col-lg px-5 px-lg-6 px-xl-10 pt-11 pb-6 py-lg-6">
+                    <h1 class=display-4>Edit your profile</h1>
+                    <div>
+                        {% if profile_form.errors %}
+                            {% for field in profile_form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <p>{{ field.name }}</p>
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in profile_form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="row mx-n2">
+                        <form method="post" class="post-form" enctype ="multipart/form-data">
+                            {% csrf_token %}
+                            <hr>
+                            <span><h6>State the name of your company:<br><br>{{ profile_form.company_name }}</h6></span>
+                            <span><h6>Provide the webiste of your company - (url)<br><br>{{ profile_form.website }}</h6></span>
+                            <span><h6>Provide your position within the company<br><br>{{ profile_form.position_of_user }}</h6></span>
+                            <span><h6>State your first name:<br><br>{{ user_form.first_name }}</h6></span>
+                            <span><h6>State your last name:<br><br>{{ user_form.last_name }}</h6></span>
+                            <span><h6>State the email you want to be reached at:<br><br>{{ user_form.email }}</h6></span>
+                            <span><h6>Provide your country from the list provided:
+                                <a class="text-success" data-bs-toggle="collapse" href="#collapsecountry" role="button" aria-expanded="false" aria-controls="collapsecountry"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                  </svg></a>
+                                <div class="collapse" id="collapsecountry">
+                                    <br>{{ profile_form.country }}
+                                </div>
+                            </h6></span>
+                            <span><h6>Provide a short description of your organization:<br><br>{{ profile_form.description }}</h6></span>
+                            <span><h6>Which type of user are you:<br><br>{{ profile_form.type_user }}</h6></span>
+                            <hr>
+                            <span><h6>Please, select the relevent SDGs:
+                                <a class="text-success" data-bs-toggle="collapse" href="#collapsesdg" role="button" aria-expanded="false" aria-controls="collapsesdg"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                  </svg></a>
+                                <div class="collapse" id="collapsesdg">
+                                    <br>{{ profile_form.sdg }}
+                                </div>
+                            </h6></span>
+                            <span><h6>Please, select the relevent industry you are operating in:
+                                <a class="text-success" data-bs-toggle="collapse" href="#collapseind" role="button" aria-expanded="false" aria-controls="collapseind"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                  </svg></a>
+                                <div class="collapse" id="collapseind">
+                                    <br>{{ profile_form.industry }}
+                                </div>
+                            </h6></span>
+                            <span><h6>Please, select the relevent value chain you are operating in:
+                                <a class="text-success" data-bs-toggle="collapse" href="#collapsevc" role="button" aria-expanded="false" aria-controls="collapsevc"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                  </svg></a>
+                                <div class="collapse" id="collapsevc">
+                                    <br>{{ profile_form.value_chain }}
+                                </div>
+                            </h6></span>
+                            <span><h6>Please, select the relevent capabilities you own:
+                                <a class="text-success" data-bs-toggle="collapse" href="#collapsecap" role="button" aria-expanded="false" aria-controls="collapsecap"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                  </svg></a>
+                                <div class="collapse" id="collapsecap">
+                                    <br>{{ profile_form.capabilities }}
+                                </div>
+                            </h6></span>
+                            <hr>
+                            <span><h6>Would you like to add a profile picture? Best is to use a square one</h6></span>
+                            <span><h6>{{ profile_form.profile_picture }}</h6></span>
+                            <button type="submit" class="btn btn-dark">Done</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Add a document {% endblock %}
+{% block contenu %} 
+<main>
+    <section id=content>
+        <div class="bg-image bg-cover w-100 vh-100" style="background-image: url(/static/assets/images/photos/platform/Desert.jpg);"></div>
+        <div class=container>
+            <div class="row vh-100 text-center justify-content-center align-items-center">
+                <div class="col-11 col-md-8 col-lg-5">
+                    <div class=row>
+                        <div class="square d-flex w-100 mt-5">
+                            <div
+                                class="square-inner bg-white border mx-auto p-4 p-lg-6 d-flex flex-column w-100 justify-content-center">
+                                <h1>Add a document to seed</h1>
+                                <div class=form-group>
+                                    <form method="POST" class="post-form" enctype ="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ docu_form.as_p }}
+                                        <button type="submit" class="btn btn-outline-dark">Done</button></div>
+                                <div class="text-center">                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

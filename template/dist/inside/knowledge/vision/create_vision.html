@@ -1,0 +1,59 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Create a Vision {% endblock %}
+    
+    
+    
+{% block contenu %} 
+<main>
+    <section class="bg-dark" id=content>
+        <div class="bcontainer-fluid px-15">
+            <div class="row no-gutters align-items-center justify-content-center">
+                <div class="bg-light col-lg px-5 px-lg-6 px-xl-10 pt-11 pb-6 py-lg-6 mt-7">
+                    <h1 class=display-4>Create a Vision</h1>
+                    {% if vision_form.errors %}
+                        {% for field in vision_form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <p>{{ field.name }}</p>
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in vision_form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="row mx-n2">
+                        <form action="{% url 'knowledge:vision_create' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if vision_form %}
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="title" placeholder="Add title">
+                            </div>
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea type="text" class="form-control" name="content" placeholder="Add a description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Keywords</label>
+                                <input type="text" data-role="tagsinput" class="form-control" name="keywords" placeholder="Add keywords">
+                            </div>
+                            <div class="form-group">
+                                <label>Aim of the vision</label>
+                                {{ vision_form.aim_vision }}
+                            </div>
+                            <button type="submit" class="btn btn-dark">Done</button>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

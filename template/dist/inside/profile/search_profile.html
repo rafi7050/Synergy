@@ -1,0 +1,72 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Search Profile {% endblock %}
+{% block contenu %} 
+<main>
+    <section id=content>
+        <div class="bg-image bg-cover w-100 vh-200" style="background-image: url(/static/assets/images/photos/platform/Search_Seed.jpg);"></div>
+        <div class=container>
+            <div class="row vh-100 text-center justify-content-center align-items-center">
+                <div class="col-11 col-md-8 col-lg-5">
+                    <div class=row>
+                        <div class="square d-flex w-100 mt-5">
+                            <div
+                                class="bg-white border mx-auto p-4 p-lg-6 flex-column w-100 justify-content-center">
+                                <h1>Search another user</h1>
+                                <form action="{% url 'accounts:return_profile' %}" method="get">
+                                    <select class="mdb-select md-form mt-3 mb-3 col-6" searchable="Search here..">
+    <option value="" disabled selected>SDG</option>
+                                            {% for sdg in user_profile.sdg_info %}
+    <option value="{{ forloop.counter }}">{{ sdg }}</option>
+      {% endfor %}
+
+
+  </select>
+<select class="mdb-select md-form mt-3 mb-3 col-6" searchable="Search here..">
+    <option value="" disabled selected>Capabilities</option>
+                                            {% for inf in user_profile.capabilities_info  %}
+    <option value="{{ forloop.counter }}">{{ inf }}</option>
+      {% endfor %}
+
+
+  </select>
+                                <select class="mdb-select md-form mt-3 mb-3 col-6" searchable="Search here..">
+    <option value="" disabled selected>Industry</option>
+                                            {% for industry in user_profile.industry_info  %}
+    <option value="{{ forloop.counter }}">{{ industry }}</option>
+      {% endfor %}
+
+
+  </select>
+                                    <select class="mdb-select md-form mt-3 mb-3 col-6" searchable="Search here..">
+    <option value="" disabled selected>Value Chain</option>
+                                            {% for value in user_profile.value_chain_info  %}
+    <option value="{{ forloop.counter }}">{{ value }}</option>
+      {% endfor %}
+
+
+  </select>
+                                    <select class="mdb-select md-form mt-3 mb-3 col-6" searchable="Search here..">
+    <option value="" disabled selected>Country</option>
+                                            {% for countries in user_profile.countries_info  %}
+    <option value="{{ forloop.counter }}">{{ countries }}</option>
+      {% endfor %}
+
+
+  </select>
+
+                                    <br>
+                                    <button type="submit" class="btn btn-dark col-6">Done</button>
+                                    <br>
+                                </form>
+                                </div>
+                                <div class="text-center">                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

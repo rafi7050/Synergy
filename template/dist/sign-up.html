@@ -1,0 +1,71 @@
+{% extends "dist/template_outside.html" %}
+    
+{% block titre %} Sign Up {% endblock %}
+    
+    
+    
+{% block contenu %} 
+
+    <main>
+        <section class="bg-dark" id=content>
+            <div class="bcontainer-fluid px-15">
+                <div class="row no-gutters align-items-center justify-content-center">
+                    <div class="bg-light col-lg-6 px-5 px-lg-6 px-xl-10 pt-11 pb-6 py-lg-6">
+                        <h1 class=display-4>Sign Up</h1>
+                        <hr>
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <p>{{ field.name }}</p>
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="row mx-n2">
+                            <form action="{% url 'accounts:create_user' %}" method="POST">
+                                {% csrf_token %}
+                                <p>Please, enter a valid username <br>{{ form.username }} <br><i>Usernames are unique on the platform</i></p>
+                                <p>Please, enter a valid password <br>{{ form.password1 }}<br>
+                                    <i>Not too similar to your personal information</i><br>
+                                    <i>Not too common</i><br>
+                                    <i>At least 8 characters</i><br>
+                                    <i>Not only numbers</i>
+                                </p>
+                                <p>Please, enter the same password as before <br>{{ form.password2 }}<br></p>
+                                <button type="submit" class="btn btn-dark">Done</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class=col-lg-6>
+                        <div class=swiper>
+                            <div class="swiper-container vh-100"
+                                data-options='{"spaceBetween": 0, "loop": true, "effect": "fade", "speed": 1500, "autoplay": {"delay": 5000}}'>
+                                <div class=swiper-wrapper>
+                                    <div class=swiper-slide>
+                                        <div class="bg-image bg-cover"
+                                            style="background-image: url(/static/assets/images/photos/platform/Matterhorn.jpg);">
+                                            <div
+                                                class="text-dark px-5 d-flex h-100 font-weight-dark font-italic align-items-end">
+                                                <div class="w-75 mb-6">
+                                                    <p>"Please, please work and don't crash" - <i>Deborah de Wolff</i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

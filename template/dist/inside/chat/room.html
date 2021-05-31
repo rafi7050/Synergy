@@ -1,0 +1,226 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Chat Select {% endblock %}
+<style>
+    body{margin-top:20px;
+    background:#eee;
+    }
+
+    /* ========================================================================
+    * MESSAGES
+    * ======================================================================== */
+    .message form {
+    padding: 6px 15px;
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #E6EBED;
+    }
+    .message form .has-icon .form-control-icon {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    width: 34px;
+    line-height: 33px;
+    text-align: center;
+    color: #777;
+    }
+    .message > a {
+    position: relative;
+    }
+    .message .indicator {
+    text-align: center;
+    }
+    .message .indicator .spinner {
+    left: 26%;
+    width: 200px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #999;
+    }
+
+    .message-wrapper {
+    position: relative;
+    padding: 0px;
+    background-color: #ffffff;
+    margin: 0px;
+    }
+    .message-wrapper .message-sideleft {
+    vertical-align: top !important;
+    }
+    .message-wrapper .message-sideleft[class*="col-"] {
+    padding-right: 0px;
+    padding-left: 0px;
+    }
+    .message-wrapper .message-sideright {
+    background-color: #f8f8f8;
+    }
+    .message-wrapper .message-sideright[class*="col-"] {
+    padding: 30px;
+    }
+    .message-wrapper .message-sideright .panel {
+    border-top: 1px dotted #DDD;
+    padding-top: 20px;
+    }
+    .message-wrapper .message-sideright .panel:first-child {
+    border-top: none;
+    padding-top: 0px;
+    }
+    .message-wrapper .message-sideright .panel .panel-heading {
+    border-bottom: none;
+    }
+    .message-wrapper .panel {
+    background-color: transparent !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    }
+    .message-wrapper .panel .panel-heading, .message-wrapper .panel .panel-body {
+    background-color: transparent !important;
+    }
+    .message-wrapper .media .media-body {
+    font-weight: 300;
+    }
+    .message-wrapper .media .media-heading {
+    margin-bottom: 0px;
+    }
+    .message-wrapper .media small {
+    color: #999999;
+    font-weight: 400;
+    }
+
+    .list-message .list-group-item {
+    padding: 15px;
+    color: #999999 !important;
+    border-right: 3px solid #8CC152 !important;
+    }
+    .list-message .list-group-item.active {
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #DDD !important;
+    }
+    .list-message .list-group-item.active p {
+    color: #999999 !important;
+    }
+    .list-message .list-group-item.active:hover, .list-message .list-group-item.active:focus, .list-message .list-group-item.active:active {
+    background-color: #EEEEEE;
+    }
+    .list-message .list-group-item small {
+    font-size: 12px;
+    }
+    .list-message .list-group-item .list-group-item-heading {
+    color: #999999 !important;
+    }
+    .list-message .list-group-item .list-group-item-text {
+    margin-bottom: 10px;
+    }
+    .list-message .list-group-item:last-child {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid #DDD !important;
+    }
+    .avatar{
+        width:50px;
+        height:50px;
+    }
+</style>
+
+{% block contenu %} 
+    <section class="bg-light pb-6 pb-md-0">
+        <div class=container>
+            <div class="col-lg-4 py-9 py-lg-10 z-index-1">
+                <h2>Chat rooms</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="chat-messages" style="max-height: 300px; overflow-y: scroll;">
+                        {% for message in messages %}
+                            {% if message.room == room_name %}
+                                <p><strong>{{ message.username }}</strong>: {{ message.content }} ... <small>{{ message.date_added }}</small></p> 
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {% for room in room_names %}
+                        <strong>{{ room }}</strong>
+                        {% for message in messages %}
+                            {% if message.room == room %}
+                                <p><strong>{{ message.username }}</strong>: {{ message.content }} ... <small>{{ message.date_added }}</small></p> 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <div>
+                        <input class="input" type="text" placeholder="Message" id="chat-message-input">
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <br>
+                        <a class="btn btn-success" id="chat-message-submit">Submit</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{ room_name|json_script:"json-roomname" }}
+    {{ username|json_script:"json-username" }}
+
+    <script>
+        function scrollToBottom() {
+            let objDiv = document.getElementById("chat-messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+
+        scrollToBottom();
+
+        const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+        const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            console.log('onmessage');
+
+            const data = JSON.parse(e.data);
+
+            if (data.message) {
+                document.querySelector('#chat-messages').innerHTML += ('<b>' + data.username + '</b>: ' + data.message + '<br>');
+            } else {
+                alert('The message is empty!');
+            }
+
+            scrollToBottom();
+        };
+
+        chatSocket.onclose = function(e) {
+            console.log('The socket close unexpectadly');
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': userName,
+                'room': roomName
+            }));
+
+            messageInputDom.value = '';
+        };
+    </script>
+
+{% endblock %}

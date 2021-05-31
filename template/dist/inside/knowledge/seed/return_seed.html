@@ -1,0 +1,65 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Return Seed {% endblock %}
+{% block contenu %} 
+
+<main>
+    <section class="bg-light pb-6 pb-md-0">
+        <div class=container>
+            <div class="col-lg-10 py-9 py-lg-10 z-index-1">
+                <h1>All Related Seeds</h1>
+                <h4><i>Research Query: </i></h4>
+                {% if sdg_info == "18" %}
+                    <h4><i>All SDGs</i></h4>
+                {% else %}
+                    <h4><i>SDG {{ sdg_info }}</i></h4>
+                {% endif %}
+                {% for vc in vc_search %}
+                    <h4><i> Value Chain: {{ vc.title }} </i></h4>
+                {% endfor %}
+                {% for ind in ind_search %}
+                    <h4><i> Industry: {{ ind.title }} </i></h4>
+                {% endfor %}
+                <h2><a class="btn btn-outline-dark" href="{% url 'knowledge:search_seed' %}">Redo a Search</a></h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row px-4">
+            {% if not seed_view %}
+                <h1>No seed found with the provided terms </h1>
+            {% endif %}
+            {% for view_seed in seed_view %}
+                        <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                            <div class="card shadow lift rounded">
+                                <picture>
+                                    {% if view_seed.profile_seed == "Null" %}
+                                        <source srcset=/static/assets/images/photos/platform/Dashboard-Seed.jpg type=image/jpg><img src=/static/assets/images/photos/platform/Dashboard-Seed.jpg alt=profile-01 class="img-fluid w-100 card-img-top rounded-top">
+                                    {% else %}
+                                        <source srcset=/media/{{view_seed.profile_seed}} type=image/jpg><img src=/media/{{view_seed.profile_seed}} alt=profile-01 class="img-fluid w-100 card-img-top rounded-top">
+                                    {% endif %}
+                                </picture>    
+                                <div class="card-body py-4">
+                                    <h1>{{ view_seed.title }}</h1>
+                                    <h6><i>{{ view_seed.date_publication }}</i></h6>
+                                    <hr>
+                                    <p>Summary - {{ view_seed.summary }}</p>
+                                    {% for keyword in view_seed.keywords.all %}
+                                        <i class="mr-1 badge badge-success">{{ keyword }}</i>
+                                    {% endfor %}
+                                    <hr>
+                                    {% for user in author %}
+                                        {% if user.id == view_seed.user_id %}
+                                            <p>From : <strong><a href="{% url 'accounts:user_profile' username=user.username %}">{{ user.username }}</a></strong></p>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a class="btn btn btn-outline-dark" href="{% url 'knowledge:one_seed' slug=view_seed.slug %}">View Seed</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+        </div>
+    </section>
+</main>
+
+{% endblock %}

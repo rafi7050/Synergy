@@ -1,0 +1,41 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Chat Select {% endblock %}
+
+{% block contenu %} 
+    <section class="bg-light pb-6 pb-md-0">
+        <div class=container>
+            <div class="col-lg-4 py-9 py-lg-10 z-index-1">
+                <h2>Chat rooms</h2>
+            </div>
+            <div class="column is-4 is-offset-4">
+                <div class="field">
+                    <label>Room name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Room name" id="room-name-input">
+                        <input type="hidden" id="username-input" value={{user.get_username}}>
+                    </div>
+                </div>
+                <div class="contained">
+                    <div class="contained">
+                        <br>
+                        <a class="btn btn-success" id="room-name-submit">Submit</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelector('#room-name-input').focus();
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            var userName = document.querySelector('#username-input').value;
+
+            window.location.replace(roomName + '/?username=' + userName);
+        };
+    </script>
+
+{% endblock %}

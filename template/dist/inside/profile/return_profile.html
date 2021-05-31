@@ -1,0 +1,72 @@
+{% extends "dist/inside/template_inside.html" %}
+    
+{% block titre %} Return Profile {% endblock %}
+
+{% block contenu %} 
+
+<main>
+    <section class="bg-light pb-6 pb-md-0">
+        <div class=container>
+            <div class="col-lg-10 py-9 py-lg-10 z-index-1">
+                <h2>All Related Profiles - Query</h2>
+                {% for sdg in sdg_search %}
+                    {% if sdg.id == sdg_info %}
+                        <h4><i>{{ sdg.title }} - {{ sdg.contenu }} </i></h4> 
+                    {% endif %}
+                {% endfor %}
+                {% for ind in ind_search %}
+                    {% if ind.id == industry_info %}
+                        <h4><i>Industry - {{ ind.title }} </i></h4> 
+                    {% endif %}
+                {% endfor %}
+                {% for vc in vc_search %}
+                    {% if vc.id == value_chain_info %}
+                        <h4><i>Value Chain - {{ vc.title }} </i></h4> 
+                    {% endif %}
+                {% endfor %}
+                {% for capa in cap %}
+                    {% if capa.id == capabilities_info %}
+                        <h4><i>Capabilities - {{ capa.title }} </i></h4> 
+                    {% endif %}
+                {% endfor %}
+                {% for c in coun %}
+                    {% if c.id == country_info %}
+                        <h4><i>Country - {{ c.name }} </i></h4> 
+                    {% endif %}
+                {% endfor %}
+                <h2><a class="btn btn btn-outline-dark" href="{% url 'accounts:search_profile' %}">Redo a Search</a></h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row px-4">
+            {% if not profile_view %}
+                <h1>No profile found</h1>
+            {% endif %}
+            {% for view_user_profile in profile_view %}
+                <div class="col-md-12 col-lg-3 px-3 mb-5" data-aos=fade-up>
+                    <div class="card shadow lift rounded"> 
+                        <picture>
+                            {% if view_user_profile.profile_picture == "Null" %}
+                                <source srcset="/media/sdgs/SDG_1.jpg" type=image/jpg><img src="/media/sdgs/SDG_1.jpg" alt="Picture" class="img-fluid w-100 card-img-top rounded-top">
+                            {% else %}
+                                <source srcset="/media/{{view_user_profile.profile_picture}}" type=image/jpg><img src="/media/{{view_user_profile.profile_picture}}" alt="damn" class="img-fluid w-100 card-img-top rounded-top">
+                            {% endif %}
+                        </picture>      
+                        <div class="card-body py-4">
+                            {% for user in user_list %}
+                                {% if user.id == view_user_profile.user_id %}
+                                    <h1>{{ user.username }}</h1>
+                                    <p>{{ view_user_profile.description }}</p>
+                                    <a class="btn btn btn-outline-dark" href="{% url 'accounts:user_profile' username=user.username %}">View Profile</a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+{% endblock %}

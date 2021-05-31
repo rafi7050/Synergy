@@ -1,0 +1,197 @@
+{% extends "dist/template_outside.html" %}
+    
+{% block titre %} Welcome {% endblock %}
+    
+    
+    
+{% block contenu %} 
+
+<main>
+    <section class="bg-dark pb-6 pb-md-0" id=content>
+        <div class=container>
+            <div class="row no-gutters align-items-center">
+                <div class=col-md-8 data-aos=fade-right>
+                    <div class="img-shifted shift-left vh-75 py-12 py-lg-15">
+                        <!--image on the left-->
+                        <div class="bg-image bg-cover overlay overlay-primary-gradient-top-50 overlay-50 d-none d-md-block" style="background-image: url(static/assets/images/photos/platform/Glacier.jpg);" data-jarallax data-speed=.8></div>
+                    </div>
+                    <div class="position-absolute top-50 mt-5 mt-md-0 mt-xl-n7 left-0 pr-md-9 pr-lg-12 text-white">
+                        <div>
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <h1>Synergy</h1>
+                        <p class="mb-3 md-md-0">Digital innovation ecosystem for sustainable innovation</p>
+                    </div>
+                </div>
+                <div class="col-md d-flex flex-column align-items-center ml-md-n7" data-aos=fade-left data-aos-delay=300>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--importance of our values-->
+    <section class="bg-light py-7 py-lg-8 mb-6 mb-lg-7">
+        <div class=container>
+            <div class="row justify-content-center">
+                <div data-aos=fade-right>
+                    <h2 class=font-weight-normal><strong>Why Synergy?</strong></h2>
+                    <p class="text-justify">Achieving the development of sustainable solutions is an intensive and rigorous process. 
+                        This process usually requires the involvement of various stakeholders and associates to have access to diverse perspectives. 
+                        Looking for those partners can time- and energy-consuming since sustainable innovation is a complex world where new ideas are constantly emerging. 
+                        Furthermore, managing this collaboration can raise challenges for all involved parties. 
+                        Synergy thus hopes to be a bridge for sustainable innovation by helping interested actors to collaborate. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-6 mt-6 mb-7 py-lg-7 mt-lg-7 mb-lg-8 text-white">
+        <div class=container>
+            <div class=row>
+                <div class="col-md mb-6 mb-md-0" data-aos=fade-up>
+                    <h3 class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="text-dark" class="bi bi-file-person" viewBox="0 0 16 16">
+                        <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                        <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      </svg></h3>
+                    <br>
+                    <p>  </p>
+                    <h2 class="text-dark h5 mb-2">Match-making</h2>
+                    <p class="text-dark font-size-5 mb-0">Search for the right partners to conduct innovation.</p>
+                </div>
+                <div class="col-md mb-6 mb-md-0" data-aos=fade-up>
+                    <h3 class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+                        <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                      </svg></h3>
+                    <br>
+                    <p>  </p>
+                    <h2 class="text-dark h5 mb-2">Knowledge</h2>
+                    <p class="text-dark font-size-5 mb-0">Access new information on your industry and your envrionment.</p>
+                </div>
+                <div class="col-md mb-6 mb-md-0" data-aos=fade-up data-aos-delay=50>
+                    <h3 class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                      </svg></h3>
+                      <br>
+                    <p>  </p>
+                    <h2 class="text-dark h5 mb-2">Publish</h2>
+                    <p class="text-dark font-size-5 mb-0">Share your work and innovation to attract attention.</p>
+                </div>
+                <div class="col-md mb-0" data-aos=fade-up data-aos-delay=100>
+                    <h3 class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
+                        <path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                      </svg></h3>
+                    <br>
+                    <p>  </p>
+                    <h2 class="text-dark h5 mb-2">Report</h2>
+                    <p class="text-dark font-size-5 mb-0">View your online behavior to better understand your market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light py-7 py-lg-8 mb-6 mb-lg-7">
+        <div class=container>
+            <div class="row justify-content-center">
+                <div data-aos=fade-right>
+                    <p class="text-justify">I developed this platform during my studies to represent the findings from my Master's thesis. 
+                        The aim was initially to assess which features were critical to support digital innovation for sustainable value-creation. 
+                        Now, the aim is to see the value that this platform can bring to other organizations. 
+                        In case you are interested to learn more about it, simply follow the next steps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-6 py-lg-7">
+        <div class=container>
+            <div class="row align-items-center">
+                <div class="col-7 col-sm-6 col-md-4 col-lg-3 px-4 px-lg-4 mb-7 mb-lg-0">
+                        <source srcset=static/assets/images/photos/platform/Bottom-Welcome.jpg type=image/jpg><img src=static/assets/images/photos/platform/Bottom-Welcome.jpg alt=photo-84 class="img-fluid w-100 shadow-sm">
+                    </picture>
+                </div>
+                <div class="col-9 col-sm-8 col-md-5 col-lg-4 mb-7 mb-lg-0 ml-n10">
+                    <picture>
+                        <source srcset=static/assets/images/photos/platform/Bottom-Welcome-2.jpg type=image/jpg><img src=static/assets/images/photos/platform/Bottom-Welcome-2.jpg alt=photo-85 class="img-fluid w-100 shadow-sm">
+                    </picture>
+                </div>
+                <div class=col-md>
+                    <h2>How to join us</h2>
+                    <p>The steps needed to apply our methodology</p>
+                    <div class=d-flex data-aos=fade-left>
+                        <div class="d-flex align-items-start mt-1"><svg class=fill-primary width=16 height=16
+                                xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+                                <title>check</title>
+                                <path d=M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z />
+                            </svg></div>
+                        <div class=ml-2>
+                            <p class="font-size-5 mb-3">Create an account</p>
+                        </div>
+                    </div>
+                    <div class=d-flex data-aos=fade-left data-aos-delay=100>
+                        <div class="d-flex align-items-start mt-1"><svg class=fill-primary width=16 height=16
+                                xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+                                <title>check</title>
+                                <path
+                                    d=M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z />
+                            </svg></div>
+                        <div class=ml-2>
+                            <p class="font-size-5 mb-3">Assess your own needs</p>
+                        </div>
+                    </div>
+                    <div class=d-flex data-aos=fade-left data-aos-delay=200>
+                        <div class="d-flex align-items-start mt-1"><svg class=fill-primary width=16 height=16
+                                xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+                                <title>check</title>
+                                <path
+                                    d=M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z />
+                            </svg></div>
+                        <div class=ml-2>
+                            <p class="font-size-5 mb-3">Put a problem you are facing online</p>
+                        </div>
+                    </div>
+                    <div class=d-flex data-aos=fade-left data-aos-delay=300>
+                        <div class="d-flex align-items-start mt-1"><svg class=fill-primary width=16 height=16
+                                xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+                                <title>check</title>
+                                <path
+                                    d=M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z />
+                            </svg></div>
+                        <div class=ml-2>
+                            <p class="font-size-5 mb-3">Search for problems you can help for</p>
+                        </div>
+                    </div>
+                    <div class=d-flex data-aos=fade-left data-aos-delay=300>
+                        <div class="d-flex align-items-start mt-1"><svg class=fill-primary width=16 height=16
+                                xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+                                <title>check</title>
+                                <path
+                                    d=M23.146,5.4,20.354,2.6a.5.5,0,0,0-.708,0L7.854,14.4a.5.5,0,0,1-.708,0L4.354,11.6a.5.5,0,0,0-.708,0L.854,14.4a.5.5,0,0,0,0,.707L7.146,21.4a.5.5,0,0,0,.708,0L23.146,6.1A.5.5,0,0,0,23.146,5.4Z />
+                            </svg></div>
+                        <div class=ml-2>
+                            <p class="font-size-5 mb-3">Join an ecosystem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-6 mt-6 py-lg-7 mt-lg-7 bg-light">
+        <div class=container>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-6 col-xl-7 text-center text-lg-right">
+                    <h2 class="h3 mb-lg-0">If you are interested to join us</h2>
+                </div>
+                <div class="col text-center text-lg-left"><a href="{% url 'accounts:create_user' %}"
+                        target=_blank rel=noopener class="btn btn-secondary text-uppercase">Be part of Synergy</a></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
